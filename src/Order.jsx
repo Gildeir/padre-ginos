@@ -7,26 +7,35 @@ const intl = new Intl.NumberFormat("pt-BR", {
     currency: "BRL"
 });
 
-export default function Order (props) {
+export default function Order () {
     const [pizzaTypes, setPizzaTypes] = useState([]);
-    const [pizzaType, setPizzaType] = useState("Pepperoni");
+    const [pizzaType, setPizzaType] = useState("");
     const [pizzaSize, setPizzaSize] = useState("L");
-    const [loading, setLoadig] = useState(true);
+    const [loading, setLoading] = useState(true);
     console.log(pizzaType);
-    console.log("clicou:", pizzaSize);
     
     let price, selectedPizza; 
-
-    if(!loading) {
-        selectedPizza = pizzaTypes.find((pizza) => pizzaType === pizza.id)
-    }
     
-    async function fetchPizzaTypes() {
+
+    console.log("clicou:", selectedPizza);
+    
+async function fetchPizzaTypes() {
+    try {
         const pizzaRes = await fetch("http://localhost:3000/api/pizzas");
         const pizzaJson = await pizzaRes.json();
         setPizzaTypes(pizzaJson);
-        setLoadig(false);
+        setLoading(false);
+    } catch (error) {
+        console.error("Error fetching pizzas:", error);
+        setLoading(false);
     }
+}
+
+    if(!loading) {
+        // price = intl.format(selectedPizza.sizes[pizzaSize]);
+        selectedPizza = pizzaTypes.find((pizza) => pizzaType === pizza.id);
+    }
+
 
     useEffect(() => {
         fetchPizzaTypes();
@@ -96,11 +105,16 @@ export default function Order (props) {
                     </div>
                     <button type="submit">Add to cart</button>
                     <div className="order-pizza">
-                    <Pizza
-                        name="Pepperoni"
-                        description="another pep pizza"
-                        image="../Public/pizzas/classic_dlx.webp"
+                        
+                    {!loading && selectedPizza ? (
+                        <Pizza
+                            name={selectedPizza.name}
+                            description={selectedPizza.description}
+                            image={selectedPizza.image}
                         />
+                    ) : (
+                        <h1>Loading pizza lol</h1>
+                    )}
                          <p>$13.39</p>
                     </div>
                 </div>
