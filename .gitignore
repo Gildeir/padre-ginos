@@ -361,3 +361,40 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# Created by https://www.toptal.com/developers/gitignore/api/react
+# Edit at https://www.toptal.com/developers/gitignore?templates=react
+
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+
+*.sublime*
+
+psd
+thumb
+sketch
+
+# Additional entries
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+.vscode/
+.idea/
+*.iml
+
+build/
+dist/
+coverage/
+*.cache
+*.tmp
+
+# End of https://www.toptal.com/developers/gitignore/api/react
