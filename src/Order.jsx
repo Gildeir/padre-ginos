@@ -31,11 +31,12 @@ async function fetchPizzaTypes() {
     }
 }
 
-    if(!loading) {
-        // price = intl.format(selectedPizza.sizes[pizzaSize]);
-        selectedPizza = pizzaTypes.find((pizza) => pizzaType === pizza.id);
+if (!loading && pizzaTypes.length > 0) {
+    selectedPizza = pizzaTypes.find((pizza) => pizza.id === pizzaType);
+    if (selectedPizza) {
+        price = intl.format(selectedPizza.sizes[pizzaSize]); 
     }
-
+}
 
     useEffect(() => {
         fetchPizzaTypes();
@@ -52,10 +53,6 @@ async function fetchPizzaTypes() {
                                 name="pizza-type" 
                                 value = { pizzaType }
                                 >
-                                    {/* <option value="pepperoni">The pepperoni Pizza</option>
-                                    <option value="hawaiian">The Hawaiian Pizza</option>
-                                    <option value="big_meat">The Big Meat Pizza</option> */}
-
                                 <option value="" disabled>Select a pizza</option> {/* Default empty option */}
                                 {pizzaTypes.map((pizza) => (
                                     <option key={pizza.id} value={pizza.id}>
@@ -113,9 +110,9 @@ async function fetchPizzaTypes() {
                             image={selectedPizza.image}
                         />
                     ) : (
-                        <h1>Loading pizza lol</h1>
+                        <h1>Please, select a pizza!!</h1>
                     )}
-                         <p>$13.39</p>
+                         <p>{price}</p>
                     </div>
                 </div>
             </form>
