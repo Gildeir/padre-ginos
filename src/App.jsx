@@ -1,4 +1,5 @@
 // import React from "react";
+import PizzaOfTheDay from "./PizzaOfTheDay";
 import { createRoot } from "react-dom/client";
 import Order from "./Order"
 
@@ -7,6 +8,7 @@ const App = () => {
     <div>
       <h1>Padre Gino's - Order Now</h1>
       <Order />
+      <PizzaOfTheDay />
     </div>
   )
 
