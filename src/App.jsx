@@ -13,7 +13,6 @@ const App = () => {
     </div>
     </StrictMode>
   )
-
  };
 
 const container = document.getElementById("root");

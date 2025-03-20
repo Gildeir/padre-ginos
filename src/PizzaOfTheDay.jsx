@@ -7,7 +7,6 @@ const intl = new Intl.NumberFormat("en-US", {
 
 const PizzaOfTheDay = () => {
     const pizzaOfTheDay = usePizzaOfTheDay();
-     console.log("Pizza of the Day:", pizzaOfTheDay); // Debugging
 
     if (!pizzaOfTheDay) {
         return <div>Loading...</div>

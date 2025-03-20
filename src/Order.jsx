@@ -9,11 +9,26 @@ const intl = new Intl.NumberFormat("en-US", {
 });
 
 export default function Order() {
-  const [pizzaType, setPizzaType] = useState("");
+  const [pizzaType, setPizzaType] = useState("pepperoni");
   const [pizzaSize, setPizzaSize] = useState("M");
   const [pizzaTypes, setPizzaTypes] = useState([]);
   const [cart, setCart] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  async function checkout () {
+    setLoading(true);
+
+    await fetch("http://localhost:3000/api/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ cart })
+    })
+
+    setCart([]);
+    setLoading(false);
+  }
 
   async function fetchPizzaTypes() {
     try {
@@ -44,8 +59,8 @@ export default function Order() {
       <div className="order">
         <h2>Create Order</h2>
         <form onSubmit={(e) => {
-          e.preventDefault
-          setCart([...cart, { pizza: selectedPizza, size: pizzaSize } ])
+          e.preventDefault(),
+          setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price } ])
         }}>
           <div>
             <div>
@@ -55,7 +70,7 @@ export default function Order() {
                 name="pizza-type"
                 value={pizzaType}
               >
-                <option value="" disabled>Select a pizza</option>
+                {/* <option value="" disabled>Select a pizza</option> */}
                 {pizzaTypes.map((pizza) => (
                   <option key={pizza.id} value={pizza.id}>
                     {pizza.name}
@@ -120,7 +135,7 @@ export default function Order() {
         </form>
       </div>
         {
-          loading ? <h2>Loading...</h2> : <Cart cart={cart} />
+          loading ? <h2>Loading...</h2> : <Cart checkout={checkout} cart={cart} />
         }
     </div>
   );
