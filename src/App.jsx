@@ -1,15 +1,17 @@
-// import React from "react";
+import React, { StrictMode } from "react";
 import PizzaOfTheDay from "./PizzaOfTheDay";
 import { createRoot } from "react-dom/client";
 import Order from "./Order"
 
 const App = () => {
   return (
-    <div>
-      <h1>Padre Gino's - Order Now</h1>
+    <StrictMode>
+          <div>
+      <h1 className="logo">Padre Gino's - Order Now</h1>
       <Order />
       <PizzaOfTheDay />
     </div>
+    </StrictMode>
   )
 
  };
