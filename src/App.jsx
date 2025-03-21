@@ -6,14 +6,12 @@ import { routeTree } from "./routeTree.gen";
 const router = createRouter({ routeTree });
 
 const App = () => {
-  
-
   return (
     <StrictMode>
-      <RouterProvider router={ router } />
+      <RouterProvider router={router} />
     </StrictMode>
-  )
- };
+  );
+};
 
 const container = document.getElementById("root");
 const root = createRoot(container);

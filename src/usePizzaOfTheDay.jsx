@@ -1,19 +1,22 @@
-import {useState, useEffect, useDebugValue} from 'react';
+import { shouldUseFlatConfig } from "eslint/use-at-your-own-risk";
+import { useState, useEffect, useDebugValue } from "react";
 
 export const usePizzaOfTheDay = () => {
-    const [pizzaOfTheDay, setPizzaOfTheDay] = useState(null);
-    useDebugValue(pizzaOfTheDay ? `${pizzaOfTheDay.id} : ${pizzaOfTheDay.name}` :
-        "loading..."
-    );
+  const [pizzaOfTheDay, setPizzaOfTheDay] = useState(null);
+  useDebugValue(
+    pizzaOfTheDay ? `${pizzaOfTheDay.id} : ${pizzaOfTheDay.name}` : "loading..."
+  );
 
-    useEffect(() => {
-        async function fetchPizzaOfTheDay() {
-            const response = await fetch("http://localhost:3000/api/pizza-of-the-day");
-            const data = await response.json();
-            setPizzaOfTheDay(data);
-        }
-        fetchPizzaOfTheDay();
-    }, []);
+  useEffect(() => {
+    async function fetchPizzaOfTheDay() {
+      const response = await fetch(
+        "http://localhost:3000/api/pizza-of-the-day"
+      );
+      const data = await response.json();
+      setPizzaOfTheDay(data);
+    }
+    fetchPizzaOfTheDay();
+  }, []);
 
-    return pizzaOfTheDay;
-}
+  return pizzaOfTheDay;
+};
