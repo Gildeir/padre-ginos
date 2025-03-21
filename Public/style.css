@@ -69,7 +69,18 @@ nav > a {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40px;
+  position: relative;
+  /* Define referência para o número do carrinho */
+  margin-top: 50px;
+  width: 40px;
+  /* Ajuste o tamanho conforme necessário */
+  height: 40px;
+}
+
+.cart-icon {
+  width: 100%;
+  /* Mantém o ícone responsivo */
+  height: auto;
 }
 
 .nav-cart-number {
@@ -78,12 +89,13 @@ nav > a {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  top: -17px;
-  left: -17px;
+  position: absolute;
+  /* Agora o número sobrepõe corretamente */
+  top: -5px;
+  right: -5px;
   width: 20px;
   height: 20px;
-  font-size: 18px;
+  font-size: 14px;
   border-radius: 50%;
 }
 
