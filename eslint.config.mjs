@@ -10,6 +10,8 @@ import prettier from "eslint-config-prettier";
 // Import the ESLint React plugin, which provides linting rules for React
 import reactPlugin from "eslint-plugin-react";
 
+import pluginQuery from "@tanstack/eslint-plugin-query";
+
 /**
  * Define the export as an array of ESLint configuration objects.
  * This JSDoc comment helps editors like VS Code provide autocompletion and type checking.
@@ -30,6 +32,7 @@ export default [
 
   // Apply the JSX runtime rules, which ensure JSX is handled correctly.
   reactPlugin.configs.flat["jsx-runtime"],
+  ...pluginQuery.configs["flat/recommended"],
 
   // Custom ESLint settings for JavaScript and JSX files
   {
