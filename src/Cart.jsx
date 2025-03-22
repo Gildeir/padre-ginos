@@ -5,12 +5,8 @@ const intl = new Intl.NumberFormat("en-US", {
 
 export default function Cart({ cart, checkout }) {
   let total = 0;
-  console.log("global_total", total);
-
   for (let i = 0; i < cart.length; i++) {
     const current = cart[i];
-    console.log("total_into_for", total);
-
     total += current.pizza.sizes[current.size];
   }
 

@@ -1,4 +1,3 @@
-import { shouldUseFlatConfig } from "eslint/use-at-your-own-risk";
 import { useState, useEffect, useDebugValue } from "react";
 
 export const usePizzaOfTheDay = () => {
