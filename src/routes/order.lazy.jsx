@@ -21,7 +21,7 @@ function Order() {
   const [cart, setCart] = useContext(CartContext);
   const [loading, setLoading] = useState(true);
 
-  async function checkout () {
+  async function checkout() {
     setLoading(true);
 
     await fetch("http://localhost:3000/api/order", {
@@ -29,8 +29,8 @@ function Order() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ cart })
-    })
+      body: JSON.stringify({ cart }),
+    });
 
     setCart([]);
     setLoading(false);
@@ -64,10 +64,15 @@ function Order() {
     <div className="order-page">
       <div className="order">
         <h2>Create Order</h2>
-        <form onSubmit={(e) => {
-          e.preventDefault(),
-          setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price } ])
-        }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault(),
+              setCart([
+                ...cart,
+                { pizza: selectedPizza, size: pizzaSize, price },
+              ]);
+          }}
+        >
           <div>
             <div>
               <label htmlFor="pizza-type">Pizza Type</label>
@@ -140,9 +145,7 @@ function Order() {
           )}
         </form>
       </div>
-        {
-          loading ? <h2>Loading...</h2> : <Cart checkout={checkout} cart={cart} />
-        }
+      {loading ? <h2>Loading...</h2> : <Cart checkout={checkout} cart={cart} />}
     </div>
   );
 }
